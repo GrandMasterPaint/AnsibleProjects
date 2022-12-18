@@ -1,0 +1,11 @@
+---
+- name: Make A Fully Configured ACL and Push it to All Devices in the Network
+  hosts: routers 
+  tasks:
+    - name: Create an ACL 
+      ios_config:
+        lines: #Add your permit and deny statements and sequence numbers if needed 
+        - permit 192.168.0.17 log
+        - permit any log
+
+        parents: ip access-list standard permit_snmp #the standard IOS command for creating and naming a standard or extended ACL.
