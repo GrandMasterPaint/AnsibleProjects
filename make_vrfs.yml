@@ -1,0 +1,10 @@
+---
+- name: Make Config Changes on Individual routers
+  hosts: routers
+  vars:
+    vrfs: ["guests","sales", "management", "sales"]
+  tasks:
+    - name: R1 config
+      ios_config:
+        lines: ip vrf {{ item }}
+      with_items: "{{ vrfs }}"
